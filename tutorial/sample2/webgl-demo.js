@@ -31,7 +31,7 @@ function main() {
 
   const fsSource = `
     void main() {
-      gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
+      gl_FragColor = vec4(1.0, 1.0, 1.0, 0.0);
     }
   `;
 
@@ -120,6 +120,11 @@ function drawScene(gl, programInfo, buffers) {
   // and we only want to see objects between 0.1 units
   // and 100 units away from the camera.
 
+  // 投影矩阵
+  // 我们创建了一个4*4单位矩阵，它将作为我们的投影矩阵。Math.PI / 6表示视角为30°，webgl.width / webgl.height表示视口的宽高比，
+  // 0.1表示视锥近截面到观察点的距离，100表示视锥远截面到观察点的距离。在近截面和远截面所截的视锥外的图形在图元装配阶段将被舍弃。
+  // https://blog.csdn.net/hentailing/article/details/23671901
+
   const fieldOfView = 45 * Math.PI / 180;   // in radians
   const aspect = gl.canvas.clientWidth / gl.canvas.clientHeight;
   const zNear = 0.1;
@@ -134,6 +139,9 @@ function drawScene(gl, programInfo, buffers) {
                    zNear,
                    zFar);
 
+  // 模型视图矩阵
+  // 我们创建了一个4*4单位矩阵，它将作为我们的模型视图矩阵，用于描述物体的变换和观察者的观察方式。
+  
   // Set the drawing position to the "identity" point, which is
   // the center of the scene.
   const modelViewMatrix = mat4.create();
@@ -143,10 +151,12 @@ function drawScene(gl, programInfo, buffers) {
 
   mat4.translate(modelViewMatrix,     // destination matrix
                  modelViewMatrix,     // matrix to translate
-                 [-0.0, 0.0, -6.0]);  // amount to translate
+                 [-0.0, 2.0, -16.0]);  // amount to translate
 
   // Tell WebGL how to pull out the positions from the position
   // buffer into the vertexPosition attribute.
+
+  // 实参2表示顶点数组中我们是用2个浮点值表示一个顶点，gl.FLOAT表示我们的数据为浮点类型的值，false表示我们的数据已经是介于-1.0~1.0的gl.FLOAT类型，不需要规范化
   {
     const numComponents = 2;
     const type = gl.FLOAT;
