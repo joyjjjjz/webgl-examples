@@ -1,3 +1,4 @@
+// https://developer.mozilla.org/zh-CN/docs/Web/API/WebGL_API/Tutorial/Adding_2D_content_to_a_WebGL_context
 main();
 
 //
@@ -104,6 +105,8 @@ function initBuffers(gl) {
 // Draw the scene.
 //
 function drawScene(gl, programInfo, buffers) {
+  // 第一步，用背景色擦除画布，接着建立摄像机透视矩阵。设置45度的视图角度，并且设置一个适合实际图像的宽高比。 指定在摄像机距离0.1到100单位长度的范围内的物体可见。
+  // 接着加载特定位置，并把正方形放在距离摄像机6个单位的的位置。然后，我们绑定正方形的顶点缓冲到上下文，并配置好，再通过调用 drawArrays() 方法来画出对象。 
   gl.clearColor(0.0, 0.0, 0.0, 1.0);  // Clear to black, fully opaque
   gl.clearDepth(1.0);                 // Clear everything
   gl.enable(gl.DEPTH_TEST);           // Enable depth testing
@@ -151,7 +154,7 @@ function drawScene(gl, programInfo, buffers) {
 
   mat4.translate(modelViewMatrix,     // destination matrix
                  modelViewMatrix,     // matrix to translate
-                 [-0.0, 2.0, -16.0]);  // amount to translate
+                 [-0.0, 0.0, -6.0]);  // amount to translate
 
   // Tell WebGL how to pull out the positions from the position
   // buffer into the vertexPosition attribute.

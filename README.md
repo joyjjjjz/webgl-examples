@@ -28,3 +28,7 @@ help getting one set up.
 
 These examples may be found in the [MDN WebGL examples](https://github.com/mdn/webgl-examples)
 repository on GitHub.
+
+
+python -m SimpleHTTPServer 8080
+python -m SimpleHTTPServer 8080 -d .
