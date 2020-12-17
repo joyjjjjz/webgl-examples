@@ -12,7 +12,9 @@ Specifically, each of these examples pairs with an article in the MDN
 * https://mdn.github.io/webgl-examples/tutorial/sample2/
 * https://mdn.github.io/webgl-examples/tutorial/sample3/
 * https://mdn.github.io/webgl-examples/tutorial/sample4/
+Creating 3D objects using WebGL
 * https://mdn.github.io/webgl-examples/tutorial/sample5/
+Using textures in WebGL
 * https://mdn.github.io/webgl-examples/tutorial/sample6/
 * https://mdn.github.io/webgl-examples/tutorial/sample7/
 * https://mdn.github.io/webgl-examples/tutorial/sample8/
