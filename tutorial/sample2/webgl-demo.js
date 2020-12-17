@@ -32,7 +32,8 @@ function main() {
 
   const fsSource = `
     void main() {
-      gl_FragColor = vec4(1.0, 1.0, 1.0, 0.0);
+      // gl_FragColor = vec4(1.0, 1.0, 1.0, 0.0);
+      gl_FragColor = vec4(gl_FragCoord.x/500.0*1.0, 0.0, 0.0, 1.0);      
     }
   `;
 
@@ -43,6 +44,9 @@ function main() {
   // Collect all the info needed to use the shader program.
   // Look up which attribute our shader program is using
   // for aVertexPosition and look up uniform locations.
+  // 在创建着色器程序之后，我们需要查找WebGL返回分配的输入位置。
+  // 在上述情况下，我们有一个属性和两个uniforms。属性从缓冲区接收值。顶点着色器的每次迭代都从分配给该属性的缓冲区接收下一个值。
+  // uniforms类似于JavaScript全局变量。它们在着色器的所有迭代中保持相同的值。由于属性和统一的位置是特定于单个着色器程序的，因此我们将它们存储在一起以使它们易于传递  
   const programInfo = {
     program: shaderProgram,
     attribLocations: {
